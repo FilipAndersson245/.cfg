@@ -67,3 +67,13 @@ fish -c "set -x RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=
   cargo install grex --locked && \
   cargo install cargo-nextest --locked && \
   cargo install nu --locked"
+
+
+# Only run these if in wsl
+if [ -f "/proc/sys/fs/binfmt_misc/WSLInterop" ]; then
+   . echo 'WSL'
+   fish -c "rg --files /mnt/c/Users/ -g code | fish_add_path"
+   touch /etc/wsl.conf || exit
+   echo '[interop]\nappendWindowsPath = false' >> /etc/wsl.conf
+fi
+
