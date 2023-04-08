@@ -9,6 +9,8 @@ export KEEP_ZSHRC="yes"
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+> ~/.zshrc
+
 echo 'export ZSH="$HOME/.oh-my-zsh"' >> ~/.zshrc
 echo 'DISABLE_UNTRACKED_FILES_DIRTY="true"' >> ~/.zshrc
 
@@ -21,3 +23,4 @@ git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
 
 echo 'plugins=(git sudo zsh-autosuggestions fast-syntax-highlighting)' >> ~/.zshrc
 echo 'source $ZSH/oh-my-zsh.sh' >> ~/.zshrc
+
