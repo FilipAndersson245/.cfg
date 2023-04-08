@@ -23,8 +23,8 @@ echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
 source ~/.zshrc
 
 # install python versions
-pyenv install 3.11
+pyenv install 3.11.3
 pyenv install 3.10
 
 # Set global python version
-pyenv global 3.11.2
+pyenv global 3.11.3
