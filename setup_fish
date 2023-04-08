@@ -74,6 +74,6 @@ if [ -f "/proc/sys/fs/binfmt_misc/WSLInterop" ]; then
    . echo 'WSL'
    fish -c "rg --files /mnt/c/Users/ -g code | fish_add_path"
    touch /etc/wsl.conf || exit
-   echo '[interop]\nappendWindowsPath = false' >> /etc/wsl.conf
+   echo -e '[interop]\nappendWindowsPath = false' | sudo tee /etc/wsl.conf
 fi
 
