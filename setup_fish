@@ -71,7 +71,7 @@ fish -c "set -x RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=
 
 # Only run these if in wsl
 if [ -f "/proc/sys/fs/binfmt_misc/WSLInterop" ]; then
-   . echo 'WSL'
+   echo 'Configuring wsl specific parameters.'
    fish -c "rg --files /mnt/c/Users/ -g code | fish_add_path"
    touch /etc/wsl.conf || exit
    echo -e '[interop]\nappendWindowsPath = false' | sudo tee /etc/wsl.conf
