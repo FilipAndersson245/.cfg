@@ -4,8 +4,11 @@ sudo apt update -y
 sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt upgrade -y
 
+sudo apt install build-essential libssl-dev zlib1g-dev libasound2-dev cmake  \
+libbz2-dev libreadline-dev libsqlite3-dev curl fzf ffmpeg expat pkg-config \
+libxcb-composite0-dev libharfbuzz-dev libexpat1-dev libfreetype6-dev \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev fish fzf -y
 
-sudo apt install fish
 echo /usr/local/bin/fish | sudo tee -a /etc/shells
 fish -c 'chsh -s (command -s fish)'
 
@@ -22,10 +25,6 @@ fish -c 'set -U fish_greeting ""'
 curl -sS https://starship.rs/install.sh | sh
 
 echo 'starship init fish | source' > ~/.config/fish/config.fish
-
-sudo apt install build-essential libssl-dev zlib1g-dev \
-libbz2-dev libreadline-dev libsqlite3-dev curl \
-libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev -y
 
 curl https://pyenv.run | zsh
 
@@ -46,23 +45,25 @@ echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
 
 echo 'pyenv init - | source' > ~/.config/fish/config.fish
 
+fish -c 'pyenv install 3.11'
+fish -c 'pyenv install 3.10'
+fish -c 'pyenv global 3.11'
+
 # Rustup & Cargo
 curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
 fish -c 'fish_add_path $HOME/.cargo/bin'
 mkdir -p ~/.config/fish/completions
 fish -c 'rustup completions fish > ~/.config/fish/completions/rustup.fish'
 
-sudo apt install fzf -y
-
-fish -c "set -x RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C panic=abort' && \ 
-  cargo install --locked bat && \ 
-  cargo install zoxide --locked && \ 
-  cargo install sd --locked && \ 
-  cargo install git-delta --locked && \ 
-  cargo install ripgrep --locked && \ 
-  cargo install --locked hyperfine && \ 
-  cargo install silicon --locked && \ 
-  cargo install gitui --locked && \ 
-  cargo install grex --locked && \ 
+fish -c "set -x RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C panic=abort' && \
+  cargo install --locked bat && \
+  cargo install zoxide --locked && \
+  cargo install sd --locked && \
+  cargo install git-delta --locked && \
+  cargo install ripgrep --locked && \
+  cargo install --locked hyperfine && \
+  cargo install silicon --locked && \
+  cargo install gitui --locked && \
+  cargo install grex --locked && \
   cargo install cargo-nextest --locked && \
   cargo install nu --locked"
