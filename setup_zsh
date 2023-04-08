@@ -24,3 +24,7 @@ git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
 echo 'plugins=(git sudo zsh-autosuggestions fast-syntax-highlighting)' >> ~/.zshrc
 echo 'source $ZSH/oh-my-zsh.sh' >> ~/.zshrc
 
+
+echo 'Installing starship prompt'
+curl -sS https://starship.rs/install.sh | sh
+echo 'eval "$(starship init zsh)"' >> ~/.zshrc
