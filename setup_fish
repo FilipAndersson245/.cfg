@@ -1,0 +1,68 @@
+#!/bin/bash
+
+sudo apt update -y
+sudo apt-add-repository ppa:fish-shell/release-3
+sudo apt upgrade -y
+
+
+sudo apt install fish
+echo /usr/local/bin/fish | sudo tee -a /etc/shells
+fish -c 'chsh -s (command -s fish)'
+
+fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
+fish -c "fisher install nickeb96/puffer-fish"
+fish -c "fisher install gazorby/fish-abbreviation-tips"
+fish -c "fisher install gazorby/fish-abbreviation-tips"
+fish -c "fisher install PatrickF1/fzf.fish"
+fish -c "fisher install joseluisq/gitnow@2.11.0"
+fish -c "fisher install edc/bass"
+
+fish -c 'set -U fish_greeting ""'
+
+curl -sS https://starship.rs/install.sh | sh
+
+echo 'starship init fish | source' > ~/.config/fish/config.fish
+
+sudo apt install build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev curl \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev -y
+
+curl https://pyenv.run | zsh
+
+fish -c 'set -Ux PYENV_ROOT $HOME/.pyenv'
+fish -c 'fish_add_path $PYENV_ROOT/bin'
+
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
+echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
+
+echo 'pyenv init - | source' > ~/.config/fish/config.fish
+
+# Rustup & Cargo
+curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
+fish -c 'fish_add_path $HOME/.cargo/bin'
+mkdir -p ~/.config/fish/completions
+fish -c 'rustup completions fish > ~/.config/fish/completions/rustup.fish'
+
+sudo apt install fzf -y
+
+fish -c "set -x RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C panic=abort' && \ 
+  cargo install --locked bat && \ 
+  cargo install zoxide --locked && \ 
+  cargo install sd --locked && \ 
+  cargo install git-delta --locked && \ 
+  cargo install ripgrep --locked && \ 
+  cargo install --locked hyperfine && \ 
+  cargo install silicon --locked && \ 
+  cargo install gitui --locked && \ 
+  cargo install grex --locked && \ 
+  cargo install cargo-nextest --locked && \
+  cargo install nu --locked"
