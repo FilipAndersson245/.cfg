@@ -7,8 +7,8 @@ sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt upgrade -y
 
 sudo apt install build-essential libssl-dev zlib1g-dev libasound2-dev cmake  \
-libbz2-dev libreadline-dev libsqlite3-dev curl fzf ffmpeg expat pkg-config \
-libxcb-composite0-dev libharfbuzz-dev libexpat1-dev libfreetype6-dev \
+libbz2-dev libreadline-dev libsqlite3-dev curl fzf ffmpeg expat pkg-config nodejs \
+libxcb-composite0-dev libharfbuzz-dev libexpat1-dev libfreetype6-dev libblas-dev liblapack-dev \
 libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev fish fzf -y
 
 echo /usr/local/bin/fish | sudo tee -a /etc/shells
