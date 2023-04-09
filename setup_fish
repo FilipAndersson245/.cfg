@@ -17,7 +17,6 @@ fish -c 'chsh -s (command -s fish)'
 fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
 fish -c "fisher install nickeb96/puffer-fish"
 fish -c "fisher install gazorby/fish-abbreviation-tips"
-fish -c "fisher install gazorby/fish-abbreviation-tips"
 fish -c "fisher install PatrickF1/fzf.fish"
 fish -c "fisher install joseluisq/gitnow@2.11.0"
 fish -c "fisher install edc/bass"
