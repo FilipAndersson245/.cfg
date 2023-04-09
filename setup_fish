@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/setup_fish | sh
+
 sudo apt update -y
 sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt upgrade -y
