@@ -25,7 +25,7 @@ fish -c "fisher install edc/bass"
 fish -c 'set -U fish_greeting ""'
 mkdir -p ~/.config/fish/completions
 
-curl https://pyenv.run | zsh
+curl https://pyenv.run | bash
 
 fish -c 'set -Ux PYENV_ROOT $HOME/.pyenv'
 fish -c 'fish_add_path $PYENV_ROOT/bin'
