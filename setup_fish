@@ -50,9 +50,8 @@ fish -c 'pyenv global 3.11'
 curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
 fish -c 'fish_add_path $HOME/.cargo/bin'
 
-
-
 fish -c "set -x RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C panic=abort' && \
+  cargo install starship --locked && \
   cargo install bat --target-dir=/tmp/bat --locked && \
   cargo install zoxide --locked && \
   cargo install sd --locked && \
@@ -62,15 +61,21 @@ fish -c "set -x RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=
   cargo install silicon --locked && \
   cargo install gitui --locked && \
   cargo install grex --locked && \
+  cargo install xh --locked && \
+  cargo install du-dust --locked && 
+  cargo install codevis --locked && \
   cargo install cargo-nextest --locked && \
-  cargo install nu --locked && \
-  cargo install starship --locked"
+  cargo install nu --locked"
 
 fish -c 'rustup completions fish > ~/.config/fish/completions/rustup.fish'
 fish -c 'starship completions fish > ~/.config/fish/completions/starship.fish'
-mv /tmp/bat/release/build/bat-*/out/assets/completions/bat.fish ~/.config/fish/completions/bat.fish
-mv /tmp/hyperfine/release/build/hyperfine-*/out/hyperfine.fish ~/.config/fish/completions/hyperfine.fish
+mv /tmp/bat/release/build/bat-*/out/assets/completions/bat.fish ~/.config/fish/completions/
+mv /tmp/hyperfine/release/build/hyperfine-*/out/hyperfine.fish ~/.config/fish/completions/
 mv /tmp/ripgrep/release/build/ripgrep-*/out/rg.fish ~/.config/fish/completions/
+mv /tmp/sd/release/build/sd-*/out/sd.fish ~/.config/fish/completions/
+
+curl https://raw.githubusercontent.com/ducaale/xh/master/completions/xh.fish >> ~/.config/fish/completions/xh.fish
+curl https://raw.githubusercontent.com/bootandy/dust/master/completions/dust.fish >> ~/.config/fish/completions/dust.fish
 
 echo 'starship init fish | source' > ~/.config/fish/config.fish
 
@@ -79,7 +84,7 @@ echo 'starship init fish | source' > ~/.config/fish/config.fish
 if [ -f "/proc/sys/fs/binfmt_misc/WSLInterop" ]; then
    echo 'Configuring wsl specific parameters.'
    fish -c "rg --files /mnt/c/Users/ -g code | fish_add_path"
-   touch /etc/wsl.conf || exit
+   sudo touch /etc/wsl.conf || exit
    echo -e '[interop]\nappendWindowsPath = false' | sudo tee /etc/wsl.conf
 fi
 
