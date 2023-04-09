@@ -21,10 +21,7 @@ fish -c "fisher install joseluisq/gitnow@2.11.0"
 fish -c "fisher install edc/bass"
 
 fish -c 'set -U fish_greeting ""'
-
-curl -sS https://starship.rs/install.sh | sh
-
-echo 'starship init fish | source' > ~/.config/fish/config.fish
+mkdir -p ~/.config/fish/completions
 
 curl https://pyenv.run | zsh
 
@@ -43,7 +40,7 @@ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
 echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
 echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
 
-echo 'pyenv init - | source' > ~/.config/fish/config.fish
+echo 'pyenv init - | source' > ~/.config/fish/config.fish 
 
 fish -c 'pyenv install 3.11'
 fish -c 'pyenv install 3.10'
@@ -52,21 +49,30 @@ fish -c 'pyenv global 3.11'
 # Rustup & Cargo
 curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
 fish -c 'fish_add_path $HOME/.cargo/bin'
-mkdir -p ~/.config/fish/completions
-fish -c 'rustup completions fish > ~/.config/fish/completions/rustup.fish'
+
+
 
 fish -c "set -x RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C panic=abort' && \
-  cargo install --locked bat && \
+  cargo install bat --target-dir=/tmp/bat --locked && \
   cargo install zoxide --locked && \
   cargo install sd --locked && \
   cargo install git-delta --locked && \
-  cargo install ripgrep --locked && \
-  cargo install --locked hyperfine && \
+  cargo install ripgrep --target-dir=/tmp/ripgrep --locked && \
+  cargo install hyperfine --target-dir=/tmp/hyperfine --locked  && \
   cargo install silicon --locked && \
   cargo install gitui --locked && \
   cargo install grex --locked && \
   cargo install cargo-nextest --locked && \
-  cargo install nu --locked"
+  cargo install nu --locked && \
+  cargo install starship --locked"
+
+fish -c 'rustup completions fish > ~/.config/fish/completions/rustup.fish'
+fish -c 'starship completions fish > ~/.config/fish/completions/starship.fish'
+mv /tmp/bat/release/build/bat-*/out/assets/completions/bat.fish ~/.config/fish/completions/bat.fish
+mv /tmp/hyperfine/release/build/hyperfine-*/out/hyperfine.fish ~/.config/fish/completions/hyperfine.fish
+mv /tmp/ripgrep/release/build/ripgrep-*/out/rg.fish ~/.config/fish/completions/
+
+echo 'starship init fish | source' > ~/.config/fish/config.fish
 
 
 # Only run these if in wsl
