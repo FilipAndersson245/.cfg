@@ -74,6 +74,14 @@ fish -c "set -x RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=
   cargo install du-dust --locked && 
   cargo install codevis --locked && \
   cargo install cargo-nextest --locked && \
+  cargo install tealdeer --locked && \
+  cargo install lsd --locked && \
+  cargo install procs --locked && \
+  cargo install gping --locked && \
+  cargo install cargo-watch --locked && \
+  cargo install cargo-update --locked && \
+  cargo install just --locked && \
+  cargo install difftastic --locked && \
   cargo install nu --locked"
 
 fish -c 'rustup completions fish > ~/.config/fish/completions/rustup.fish'
@@ -85,6 +93,8 @@ mv /tmp/sd/release/build/sd-*/out/sd.fish ~/.config/fish/completions/
 
 curl https://raw.githubusercontent.com/ducaale/xh/master/completions/xh.fish >> ~/.config/fish/completions/xh.fish
 curl https://raw.githubusercontent.com/bootandy/dust/master/completions/dust.fish >> ~/.config/fish/completions/dust.fish
+
+fish -c "tldr --update"
 
 echo 'starship init fish | source' > ~/.config/fish/config.fish
 
