@@ -1,5 +1,8 @@
 [core]
     pager = delta
+    
+[pager]
+        difftool = true
 
 [interactive]
     diffFilter = delta --color-only
@@ -22,9 +25,17 @@
 
 [diff]
     colorMoved = default
-    
+    tool = difftastic
+
+[difftool]
+    prompt = false
+
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
+        
 [alias]
-  prune = fetch --prune
-  undo = reset --soft HEAD^
-  stash-all = stash save --include-untracked
-  glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    dft = difftool
+    prune = fetch --prune
+    undo = reset --soft HEAD^
+    stash-all = stash save --include-untracked
+    glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
