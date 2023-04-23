@@ -10,23 +10,20 @@
 # Candy Corn    #FEE761
 # Torch Red     #FF0044
 # Cerulean      #0095E9
-# Cod Gray      #131313 (brogrammer background)
 
+palette = 'pill'
 
-format = """
-$directory\
+format = """$directory\
 $git_branch\
 $git_status\
-$cmd_duration\
-\r\n\
-$character
+$cmd_duration
+$character\
 """
 
 #format = """$character"""
 
 # move the rest of the prompt to the right
-right_format = """
-$nodejs\
+right_format = """$nodejs\
 $python\
 $conda\
 $rust\
@@ -38,12 +35,26 @@ $time\
 add_newline = false
 scan_timeout = 10
 
+# Define custom colors
+[palettes.pill]
+# FG
+yellow_orange = "#FEAE34"
+candy_corn = "#FEE761"
+torch_red = "#FF0044"
+cerulean = "#0095E9"
+
+# FG
+charcoal =  "#36454f"
+white_smoke = "#f5f5f5"
+
+
+
 [directory]
-style = "fg:#36454f bg:#FEAE34"
+style = "fg:yellow_orange"
 format = """
-[](fg:#FEAE34)\
-[ $path]($style)\
-[](fg:#FEAE34)\
+[]($style)\
+[ $path](inverted $style bg:black)\
+[]($style)\
 """
 truncation_length = 3
 use_os_path_sep = false
@@ -51,23 +62,21 @@ fish_style_pwd_dir_length = 3
 
 [git_branch]
 symbol = ""
-style = "fg:#36454f bg:#FEE761"
+style = "fg:black bg:candy_corn"
 format = """
-[](inverted #FEE761)\
+[]($style)\
 [ $symbol $branch]($style)\
 """
 
 [git_status]
-style = "fg:#36454f bg:#FEE761"
+style = "fg:black bg:candy_corn"
 format = """
-[ \\[](fg:#465966 bg:#FEE761)\
-[($all_status$ahead_behind)]($style)\
-[\\]](fg:#465966 bg:#FEE761)\
-[ ](fg:#FEE761 bg:none)\
+[( \\[$all_status$ahead_behind)\\]]($style)\
+[ ](fg:candy_corn bg:none)\
 """
 
 [cmd_duration]
-style = "fg:#545454"
+style = "white_smoke"
 format = """
 [$duration]($style)\
 """
@@ -135,7 +144,7 @@ format = """
 # -----------------------------------------------------------------------------
 
 # Inserts a blank line between shell prompts
-#add_newline = false
+
 
 # Disable the package module, hiding it from the prompt completely
 #[package]
