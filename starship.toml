@@ -1,0 +1,154 @@
+# Colors
+# fg
+# charcoal          #36454f
+# WhiteSmoke        #f5f5f5
+# Ebony Clay        #262b44
+# Light slate gray  #4e6472
+
+# bg
+# Yellow Orange #FEAE34
+# Candy Corn    #FEE761
+# Torch Red     #FF0044
+# Cerulean      #0095E9
+# Cod Gray      #131313 (brogrammer background)
+
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$cmd_duration\
+\r\n\
+$character
+"""
+
+#format = """$character"""
+
+# move the rest of the prompt to the right
+right_format = """
+$nodejs\
+$python\
+$conda\
+$rust\
+$package\
+$time\
+"""
+
+# Disable the blank line at the start of the prompt
+add_newline = false
+scan_timeout = 10
+
+[directory]
+style = "fg:#36454f bg:#FEAE34"
+format = """
+[](fg:#FEAE34)\
+[ $path]($style)\
+[](fg:#FEAE34)\
+"""
+truncation_length = 3
+use_os_path_sep = false
+fish_style_pwd_dir_length = 3
+
+[git_branch]
+symbol = ""
+style = "fg:#36454f bg:#FEE761"
+format = """
+[](inverted #FEE761)\
+[ $symbol $branch]($style)\
+"""
+
+[git_status]
+style = "fg:#36454f bg:#FEE761"
+format = """
+[ \\[](fg:#465966 bg:#FEE761)\
+[($all_status$ahead_behind)]($style)\
+[\\]](fg:#465966 bg:#FEE761)\
+[ ](fg:#FEE761 bg:none)\
+"""
+
+[cmd_duration]
+style = "fg:#545454"
+format = """
+[$duration]($style)\
+"""
+
+# Projects -------------------------------------------------------------
+[nodejs]
+symbol = "Node"
+version_format = "v$major.$minor"
+style = "fg:#f5f5f5 bg:#219245"
+format = """
+[](fg:#219245)\
+[$symbol $version]($style)\
+[ ](fg:#219245)\
+"""
+
+[rust]
+symbol = "Rust"
+version_format = "v$major.$minor"
+style = "fg:#f5f5f5 bg:#219245"
+format = """
+[](fg:#219245)\
+[$symbol $version]($style)\
+[ ](fg:#219245)\
+"""
+
+[python]
+symbol = "Python"
+style = "fg:#f5f5f5 bg:#219245"
+version_format = "v$major.$minor"
+format = """
+[](fg:#219245)\
+[$symbol $version]($style)\
+[ ](fg:#219245)\
+"""
+
+
+[conda]
+ignore_base = true
+style = "fg:#f5f5f5 bg:#d2042d"
+format = """
+[](fg:#d2042d)\
+[Env:$environment]($style)\
+[ ](fg:#d2042d)\
+"""
+
+[package]
+style = "fg:#f5f5f5 bg:#9A5DCC"
+format = """
+[](fg:#9A5DCC)\
+[$symbol$version]($style)\
+[ ](fg:#9A5DCC)\
+"""
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:#33658A fg:#f5f5f5"
+format = """
+[](fg:#33658A)\
+[[$time](bg:#33658A)]($style)\
+[](fg:#33658A)\
+"""
+
+
+# -----------------------------------------------------------------------------
+
+# Inserts a blank line between shell prompts
+#add_newline = false
+
+# Disable the package module, hiding it from the prompt completely
+#[package]
+#disabled = true
+
+#[directory]
+#use_os_path_sep = false
+#fish_style_pwd_dir_length = 3
+
+#[rust]
+#format = "[$symbol]($style)"
+
+# [git_metrics]
+# added_style = "bold blue"
+# format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+# disabled = false
