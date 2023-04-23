@@ -17,9 +17,6 @@
     conflictstyle = diff3
     ff = only
     
-[commit]
-    gpgSign = true
-
 [push]
     followTags = true
 
@@ -32,6 +29,9 @@
 
 [difftool "difftastic"]
     cmd = difft "$LOCAL" "$REMOTE"
+
+[credential "https://github.com"]
+	helper = !/usr/bin/gh auth git-credential
         
 [alias]
     dft = difftool

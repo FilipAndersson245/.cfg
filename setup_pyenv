@@ -1,12 +1,6 @@
 #!/bin/bash
 
-# Dependencies
-sudo apt install build-essential libssl-dev zlib1g-dev \
-libbz2-dev libreadline-dev libsqlite3-dev curl \
-libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev -y
-
-# Download and install pyenv
-curl https://pyenv.run | zsh
+curl https://pyenv.run | bash
 
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
@@ -20,11 +14,18 @@ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
 echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
 echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
 
-source ~/.zshrc
+if  type "fish" &> /dev/null; then
+  if [ ! -d ~/.config ]; then
+    mkdir -p ~/.config;
+  fi
 
-# install python versions
-pyenv install 3.11.3
-pyenv install 3.10
+  fish -c 'set -Ux PYENV_ROOT $HOME/.pyenv'
+  fish -c 'fish_add_path $PYENV_ROOT/bin'
+  
+  echo 'pyenv init - | source' > ~/.config/fish/config.fish
+fi
 
-# Set global python version
-pyenv global 3.11.3
+source ~/.bashrc
+
+pyenv install 3.11 3.10
+pyenv global 3.11
