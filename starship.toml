@@ -1,7 +1,7 @@
 # Colors
 # fg
 # charcoal          #36454f
-# WhiteSmoke        #f5f5f5
+# WhiteSmoke        white_smoke
 # Ebony Clay        #262b44
 # Light slate gray  #4e6472
 
@@ -16,7 +16,8 @@ palette = 'pill'
 format = """$directory\
 $git_branch\
 $git_status\
-$cmd_duration
+$cmd_duration\
+$line_break\
 $character\
 """
 
@@ -37,11 +38,14 @@ scan_timeout = 10
 
 # Define custom colors
 [palettes.pill]
-# FG
+# BG
 yellow_orange = "#FEAE34"
 candy_corn = "#FEE761"
 torch_red = "#FF0044"
 cerulean = "#0095E9"
+bright_green = "#219245"
+bright_pink = "#9A5DCC"
+sea_blue = "#33658A"
 
 # FG
 charcoal =  "#36454f"
@@ -71,10 +75,9 @@ format = """
 [git_status]
 style = "fg:black bg:candy_corn"
 format = """
-[( \\[$all_status$ahead_behind)\\]]($style)\
+[\\[($all_status$ahead_behind)\\]]($style)\
 [ ](fg:candy_corn bg:none)\
 """
-
 [cmd_duration]
 style = "white_smoke"
 format = """
@@ -85,37 +88,37 @@ format = """
 [nodejs]
 symbol = "Node"
 version_format = "v$major.$minor"
-style = "fg:#f5f5f5 bg:#219245"
+style = "fg:white_smoke bg:bright_green"
 format = """
-[](fg:#219245)\
+[](fg:bright_green)\
 [$symbol $version]($style)\
-[ ](fg:#219245)\
+[ ](fg:bright_green)\
 """
 
 [rust]
 symbol = "Rust"
 version_format = "v$major.$minor"
-style = "fg:#f5f5f5 bg:#219245"
+style = "fg:white_smoke bg:bright_green"
 format = """
-[](fg:#219245)\
+[](fg:bright_green)\
 [$symbol $version]($style)\
-[ ](fg:#219245)\
+[ ](fg:bright_green)\
 """
 
 [python]
-symbol = "Python"
-style = "fg:#f5f5f5 bg:#219245"
+symbol = "Py"
+style = "fg:white_smoke bg:bright_green"
 version_format = "v$major.$minor"
 format = """
-[](fg:#219245)\
+[](fg:bright_green)\
 [$symbol $version]($style)\
-[ ](fg:#219245)\
+[ ](fg:bright_green)\
 """
 
 
 [conda]
 ignore_base = true
-style = "fg:#f5f5f5 bg:#d2042d"
+style = "fg:white_smoke bg:#d2042d"
 format = """
 [](fg:#d2042d)\
 [Env:$environment]($style)\
@@ -123,41 +126,19 @@ format = """
 """
 
 [package]
-style = "fg:#f5f5f5 bg:#9A5DCC"
+style = "fg:white_smoke bg:bright_pink"
 format = """
-[](fg:#9A5DCC)\
+[](fg:bright_pink)\
 [$symbol$version]($style)\
-[ ](fg:#9A5DCC)\
+[ ](fg:bright_pink)\
 """
 
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "bg:#33658A fg:#f5f5f5"
+style = "bg:sea_blue fg:white_smoke"
 format = """
-[](fg:#33658A)\
-[[$time](bg:#33658A)]($style)\
-[](fg:#33658A)\
+[](fg:sea_blue)\
+[$time]($style)\
+[](fg:sea_blue)\
 """
-
-
-# -----------------------------------------------------------------------------
-
-# Inserts a blank line between shell prompts
-
-
-# Disable the package module, hiding it from the prompt completely
-#[package]
-#disabled = true
-
-#[directory]
-#use_os_path_sep = false
-#fish_style_pwd_dir_length = 3
-
-#[rust]
-#format = "[$symbol]($style)"
-
-# [git_metrics]
-# added_style = "bold blue"
-# format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
-# disabled = false
