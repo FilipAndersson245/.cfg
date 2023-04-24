@@ -15,8 +15,17 @@ palette = 'pill'
 
 format = """$directory\
 $git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
 $git_status\
 $cmd_duration\
+$fill\
+$rust\
+$python\
+$nodejs\
+$conda\
+$package\
 $line_break\
 $character\
 """
@@ -24,12 +33,8 @@ $character\
 #format = """$character"""
 
 # move the rest of the prompt to the right
-right_format = """$nodejs\
-$python\
-$conda\
-$rust\
-$package\
-$time\
+right_format = """
+$status
 """
 
 # Disable the blank line at the start of the prompt
@@ -76,12 +81,7 @@ format = """
 style = "fg:black bg:candy_corn"
 format = """
 [\\[($all_status$ahead_behind)\\]]($style)\
-[ ](fg:candy_corn bg:none)\
-"""
-[cmd_duration]
-style = "white_smoke"
-format = """
-[$duration]($style)\
+[](fg:candy_corn bg:none)\
 """
 
 # Projects -------------------------------------------------------------
@@ -96,7 +96,7 @@ format = """
 """
 
 [rust]
-symbol = "Rust"
+symbol = "🦀"
 version_format = "v$major.$minor"
 style = "fg:white_smoke bg:bright_green"
 format = """
@@ -106,7 +106,7 @@ format = """
 """
 
 [python]
-symbol = "Py"
+symbol = "🐍"
 style = "fg:white_smoke bg:bright_green"
 version_format = "v$major.$minor"
 format = """
@@ -132,13 +132,18 @@ format = """
 [$symbol$version]($style)\
 [ ](fg:bright_pink)\
 """
-
 [time]
+disabled = true
+
+[cmd_duration]
 disabled = false
-time_format = "%R" # Hour:Minute Format
-style = "bg:sea_blue fg:white_smoke"
+style = "bg:charcoal fg:white_smoke"
 format = """
-[](fg:sea_blue)\
-[$time]($style)\
-[](fg:sea_blue)\
+[ ](fg:charcoal)\
+[$duration]($style)\
+[](fg:charcoal)\
 """
+
+[fill]
+symbol = " "
+style = 'none'
