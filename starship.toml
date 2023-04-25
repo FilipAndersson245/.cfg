@@ -23,8 +23,8 @@ $cmd_duration\
 $fill\
 $rust\
 $python\
-$nodejs\
 $conda\
+$nodejs\
 $package\
 $line_break\
 $character\
@@ -33,9 +33,7 @@ $character\
 #format = """$character"""
 
 # move the rest of the prompt to the right
-right_format = """
-$status
-"""
+# right_format = """"""
 
 # Disable the blank line at the start of the prompt
 add_newline = false

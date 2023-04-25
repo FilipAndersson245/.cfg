@@ -23,13 +23,13 @@ fish -c 'set -U fish_greeting ""'
 mkdir -p ~/.config/fish/completions
 
 # Setup Pyenv.
-# TODO RUN
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/setup_pyenv | bash
 
 # Setup and build cargo programs.
-# TODO RUN
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/setup_cargo | bash
 
 
 # Only run these if in wsl
 if [ -f "/proc/sys/fs/binfmt_misc/WSLInterop" ]; then
-   # TODO RUN
+   curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/setup_wsl | bash
 fi
