@@ -49,6 +49,7 @@ cerulean = "#0095E9"
 bright_green = "#219245"
 bright_pink = "#9A5DCC"
 sea_blue = "#33658A"
+cherry_red = "#d2042d"
 
 # FG
 charcoal =  "#36454f"
@@ -116,11 +117,11 @@ format = """
 
 [conda]
 ignore_base = true
-style = "fg:white_smoke bg:#d2042d"
+style = "fg:white_smoke bg:#cherry_red"
 format = """
-[](fg:#d2042d)\
+[](fg:#cherry_red)\
 [Env:$environment]($style)\
-[ ](fg:#d2042d)\
+[ ](fg:#cherry_red)\
 """
 
 [package]
@@ -137,9 +138,9 @@ disabled = true
 disabled = false
 style = "bg:charcoal fg:white_smoke"
 format = """
-[ ](fg:charcoal)\
+[](bg:charcoal fg:black)\
 [$duration]($style)\
-[](fg:charcoal)\
+[](fg:charcoal)\
 """
 
 [fill]
