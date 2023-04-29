@@ -28,6 +28,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAnde
 # Setup and build cargo programs.
 curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/setup_cargo | bash
 
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/.gitconfig > ~/.gitconfig
 
 # Only run these if in wsl
 if [ -f "/proc/sys/fs/binfmt_misc/WSLInterop" ]; then

@@ -52,3 +52,5 @@ if  type "fish" &> /dev/null; then
   echo "SETTING STARSHIP AS FISH PROMPT"
   echo 'starship init fish | source' > ~/.config/fish/config.fish
 fi
+
+curl https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/starship.toml >> ~/.config/starship.toml
