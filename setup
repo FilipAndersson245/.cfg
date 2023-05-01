@@ -11,7 +11,7 @@ sudo apt upgrade -y
 
 sudo apt install apt-fast  -y
 
-sudo apt install build-essential libssl-dev zlib1g-dev libasound2-dev cmake python3-pylsp  \
+sudo apt-fast install build-essential clang-15 lldb-15 lld-15 libssl-dev zlib1g-dev libasound2-dev cmake python3-pylsp  \
 libbz2-dev libreadline-dev libsqlite3-dev curl fzf ffmpeg expat pkg-config nodejs gh \
 libxcb-composite0-dev libharfbuzz-dev libexpat1-dev libfreetype6-dev libblas-dev liblapack-dev \
 libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev fish fzf helix -y
