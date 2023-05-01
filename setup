@@ -3,10 +3,13 @@
 # curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/setup_fish | sh
 
 sudo apt-add-repository ppa:fish-shell/release-3
+sudo add-apt-repository ppa:apt-fast/stable 
 sudo add-apt-repository ppa:maveonair/helix-editor
 
 sudo apt update -y
 sudo apt upgrade -y
+
+sudo apt install apt-fast  -y
 
 sudo apt install build-essential libssl-dev zlib1g-dev libasound2-dev cmake python3-pylsp  \
 libbz2-dev libreadline-dev libsqlite3-dev curl fzf ffmpeg expat pkg-config nodejs gh \
