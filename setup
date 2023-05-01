@@ -8,11 +8,11 @@ sudo add-apt-repository ppa:maveonair/helix-editor
 
 sudo apt update -y
 
-DEBIAN_FRONTEND=noninteractive && sudo apt-get install -y apt-fast
-
 echo debconf apt-fast/maxdownloads string 32 | debconf-set-selections
 echo debconf apt-fast/dlflag boolean true | debconf-set-selections
 echo debconf apt-fast/aptmanager string apt-get | debconf-set-selections
+
+DEBIAN_FRONTEND=noninteractive && sudo apt-get install -y apt-fast
 
 sudo apt-fast upgrade -y
 
