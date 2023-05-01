@@ -1,16 +1,3 @@
-# Colors
-# fg
-# charcoal          #36454f
-# WhiteSmoke        white_smoke
-# Ebony Clay        #262b44
-# Light slate gray  #4e6472
-
-# bg
-# Yellow Orange #FEAE34
-# Candy Corn    #FEE761
-# Torch Red     #FF0044
-# Cerulean      #0095E9
-
 palette = 'pill'
 
 format = """$directory\

@@ -5,6 +5,12 @@ fish -c 'fish_add_path $HOME/.cargo/bin'
 
 source ~/.bashrc
 
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/download_mold | bash
+export MOLD_BIN=$(fish -c "path resolve ~/.linker/mold/bin/")
+
+echo '[target.x86_64-unknown-linux-gnu]' >> ~/.cargo/config.toml 
+echo 'rustflags = ["-C", "target-cpu=native", "-C", "link-arg=-fuse-ld="'${MOLD_BIN}'"]' >> ~/.cargo/config.toml 
+
 rustup component add rust-analyzer llvm-tools-preview
 
 # Install all programs using cargo using the most optimal performance
