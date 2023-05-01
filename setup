@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/setup_fish | sh
+# curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/setup | sh
 
 sudo apt-add-repository ppa:fish-shell/release-3
 sudo add-apt-repository ppa:apt-fast/stable 
