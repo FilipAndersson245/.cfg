@@ -27,5 +27,5 @@ fi
 
 source ~/.bashrc
 
-pyenv install 3.11 3.10
-pyenv global 3.11
+fish -c 'pyenv install 3.11 3.10'
+fish -c 'pyenv global 3.11'
