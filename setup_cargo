@@ -9,7 +9,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAnde
 export MOLD_BIN=$(fish -c "path resolve ~/.linker/mold/bin/mold")
 
 echo '[target.x86_64-unknown-linux-gnu]' >> ~/.cargo/config.toml 
-echo 'linker = clang-15' >> ~/.cargo/config.toml 
+echo 'linker = "clang-15"' >> ~/.cargo/config.toml 
 echo 'rustflags = ["-C", "target-cpu=native", "-C", "link-arg=-fuse-ld='${MOLD_BIN}'"]' >> ~/.cargo/config.toml 
 
 rustup component add rust-analyzer llvm-tools-preview
