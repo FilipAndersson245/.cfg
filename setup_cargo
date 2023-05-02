@@ -57,7 +57,7 @@ if  type "fish" &> /dev/null; then
   curl https://raw.githubusercontent.com/bootandy/dust/master/completions/dust.fish >> ~/.config/fish/completions/dust.fish
 
   echo "SETTING STARSHIP AS FISH PROMPT"
-  echo 'starship init fish | source' > ~/.config/fish/config.fish
+  echo 'starship init fish | source' >> ~/.config/fish/config.fish
 fi
 
 curl https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/starship.toml >> ~/.config/starship.toml
