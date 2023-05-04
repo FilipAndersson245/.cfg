@@ -1,22 +1,26 @@
-#!/bin/bash
+#!/bin/fish
+echo "cargo.fish"
+echo "---------------------------------------------------------------------------------------------"
 
+echo "Installing cargo."
 curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
 fish -c 'fish_add_path $HOME/.cargo/bin'
 export PATH=$HOME/.cargo/bin:$PATH
 source "$HOME/.cargo/env"
 
-curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/download_mold | bash
-export MOLD_BIN=$(fish -c "path resolve ~/.linker/mold/bin/mold")
-
+echo "Installing mold"
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/download_mold.bash | bash
+set -gx MOLD_BIN (path resolve ~/.linker/mold/bin/mold)
 echo '[target.x86_64-unknown-linux-gnu]' >> ~/.cargo/config.toml 
 echo 'linker = "clang-15"' >> ~/.cargo/config.toml 
-echo 'rustflags = ["-C", "target-cpu=native", "-C", "link-arg=-fuse-ld='${MOLD_BIN}'"]' >> ~/.cargo/config.toml 
+echo 'rustflags = ["-C", "target-cpu=native", "-C", "link-arg=-fuse-ld='$MOLD_BIN'"]' >> ~/.cargo/config.toml 
 
-rustup component add rust-analyzer
+echo "adds rustup components"
+rustup -q component add rust-analyzer
 
 # Install all programs using cargo using the most optimal performance
 
-RUSTFLAGS='-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C panic=abort' -C link-arg=-fuse-ld='${MOLD_BIN} && \
+RUSTFLAGS='-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C panic=abort -C link-arg=-fuse-ld='${MOLD_BIN} && \
   cargo install -q starship --locked && \
   cargo install -q bat --target-dir=/tmp/bat --locked && \
   cargo install -q zoxide --locked && \
@@ -46,19 +50,16 @@ tldr --update
 hx --grammar fetch
 hx --grammar build
 
-if  type "fish" &> /dev/null; then
-  echo "ADDING COMPLETIONS FOR FISH"
-  fish -c 'rustup completions fish >> ~/.config/fish/completions/rustup.fish'
-  fish -c 'starship completions fish >> ~/.config/fish/completions/starship.fish'
-  mv /tmp/bat/release/build/bat-*/out/assets/completions/bat.fish ~/.config/fish/completions/
-  mv /tmp/hyperfine/release/build/hyperfine-*/out/hyperfine.fish ~/.config/fish/completions/
-  mv /tmp/ripgrep/release/build/ripgrep-*/out/rg.fish ~/.config/fish/completions/
-  mv /tmp/sd/release/build/sd-*/out/sd.fish ~/.config/fish/completions/
-  curl https://raw.githubusercontent.com/ducaale/xh/master/completions/xh.fish >> ~/.config/fish/completions/xh.fish
-  curl https://raw.githubusercontent.com/bootandy/dust/master/completions/dust.fish >> ~/.config/fish/completions/dust.fish
+echo "Adding fish completions."
+fish -c 'rustup completions fish >> ~/.config/fish/completions/rustup.fish'
+fish -c 'starship completions fish >> ~/.config/fish/completions/starship.fish'
+mv /tmp/bat/release/build/bat-*/out/assets/completions/bat.fish ~/.config/fish/completions/
+mv /tmp/hyperfine/release/build/hyperfine-*/out/hyperfine.fish ~/.config/fish/completions/
+mv /tmp/ripgrep/release/build/ripgrep-*/out/rg.fish ~/.config/fish/completions/
+mv /tmp/sd/release/build/sd-*/out/sd.fish ~/.config/fish/completions/
+curl https://raw.githubusercontent.com/ducaale/xh/master/completions/xh.fish >> ~/.config/fish/completions/xh.fish
+curl https://raw.githubusercontent.com/bootandy/dust/master/completions/dust.fish >> ~/.config/fish/completions/dust.fish
 
-  echo "SETTING STARSHIP AS FISH PROMPT"
-  echo 'starship init fish | source' >> ~/.config/fish/config.fish
-fi
-
+echo "Init starship prompt"
+echo 'starship init fish | source' >> ~/.config/fish/config.fish
 curl https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/starship.toml >> ~/.config/starship.toml
