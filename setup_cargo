@@ -2,8 +2,7 @@
 
 curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
 fish -c 'fish_add_path $HOME/.cargo/bin'
-
-source ~/.bashrc
+export PATH=/.cargo/bin:$PATH
 
 curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/download_mold | bash
 export MOLD_BIN=$(fish -c "path resolve ~/.linker/mold/bin/mold")
@@ -16,7 +15,7 @@ rustup component add rust-analyzer llvm-tools-preview
 
 # Install all programs using cargo using the most optimal performance
 
-RUSTFLAGS='-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C panic=abort' && \
+RUSTFLAGS='-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C panic=abort' -C link-arg=-fuse-ld='${MOLD_BIN} && \
   cargo install -q starship --locked && \
   cargo install -q bat --target-dir=/tmp/bat --locked && \
   cargo install -q zoxide --locked && \
@@ -40,7 +39,7 @@ RUSTFLAGS='-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbo
   cargo install -q just --locked && \
   cargo install -q difftastic --locked && \
   cargo install -q nu --locked && \
-  cargo install macchina
+  cargo install -q macchina --locked
 
 tldr --update
 hx --grammar fetch
