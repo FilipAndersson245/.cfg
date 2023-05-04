@@ -2,7 +2,7 @@
 
 curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
 fish -c 'fish_add_path $HOME/.cargo/bin'
-export PATH=/.cargo/bin:$PATH
+export PATH=~/.cargo/bin:$PATH
 
 curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/download_mold | bash
 export MOLD_BIN=$(fish -c "path resolve ~/.linker/mold/bin/mold")
