@@ -39,7 +39,8 @@ RUSTFLAGS='-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbo
   cargo install -q cargo-update --locked && \
   cargo install -q just --locked && \
   cargo install -q difftastic --locked && \
-  cargo install -q nu --locked
+  cargo install -q nu --locked && \
+  cargo install macchina
 
 tldr --update
 hx --grammar fetch
