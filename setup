@@ -23,12 +23,15 @@ mkdir -p ~/.config/fish/completions
 
 # Setup Pyenv.
 curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/setup_pyenv | bash
+source ~/.bashrc
 
 # Setup and build cargo programs.
 curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/setup_cargo | bash
+source ~/.bashrc
 
 # Setup .gitconfig
 curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/.gitconfig > ~/.gitconfig
+source ~/.bashrc
 
 # Only run these if in wsl
 if [ -f "/proc/sys/fs/binfmt_misc/WSLInterop" ]; then
