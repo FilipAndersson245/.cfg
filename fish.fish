@@ -62,7 +62,6 @@ echo_divider
 echo 'Installing cargo.'
 curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
 fish_add_path $HOME/.cargo/bin
-export PATH=$HOME/.cargo/bin:$PATH
 
 echo_divider
 echo 'Installing MOLD.'
