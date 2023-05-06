@@ -10,7 +10,7 @@ echo_divider
 echo 'Installing packages'
 sudo add-apt-repository -y ppa:maveonair/helix-editor
 
-sudo apt -qq -y install build-essential clang-15 lldb-15 lld-15 libssl-dev zlib1g-dev libasound2-dev \
+sudo apt -qq -y install build-essential clang-15 lldb-15 lld-15 libssl-dev zlib1g-dev zstd libasound2-dev \
     libbz2-dev libreadline-dev libsqlite3-dev curl fzf ffmpeg expat pkg-config nodejs gh cmake python3-pylsp \
     libxcb-composite0-dev libharfbuzz-dev libexpat1-dev libfreetype6-dev libblas-dev liblapack-dev \
     libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev fish fzf helix
