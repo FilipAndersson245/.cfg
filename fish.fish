@@ -2,7 +2,7 @@
 
 function echo_divider
     set_color -o yellow
-    echo '------------------------------------------------------------'
+    echo -----------------------------------------------------------------
     set_color normal
 end
 
@@ -81,31 +81,8 @@ rustup -q component add rust-analyzer
 # Install all programs using cargo using the most optimal performance
 echo_divider
 echo 'Installing cargo packages...'
-set RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C panic=abort -C link-arg=-fuse-ld='$MOLD_BIN
-cargo install -q starship --locked && \
-    cargo install -q bat --target-dir=/tmp/bat --locked && \
-    cargo install -q zoxide --locked && \
-    cargo install -q sd --locked && \
-    cargo install -q git-delta --locked && \
-    cargo install -q ripgrep --target-dir=/tmp/ripgrep --locked && \
-    cargo install -q hyperfine --target-dir=/tmp/hyperfine --locked && \
-    cargo install -q silicon --locked && \
-    cargo install -q gitui --locked && \
-    cargo install -q grex --locked && \
-    cargo install -q xh --locked && \
-    cargo install -q du-dust --locked && \
-    cargo install -q codevis --locked && \
-    cargo install -q cargo-nextest --locked && \
-    cargo install -q tealdeer --locked && \
-    cargo install -q lsd --locked && \
-    cargo install -q procs --locked && \
-    cargo install -q gping --locked && \
-    cargo install -q cargo-watch --locked && \
-    cargo install -q cargo-update --locked && \
-    cargo install -q just --locked && \
-    cargo install -q difftastic --locked && \
-    cargo install -q nu --locked && \
-    cargo install -q macchina --locked
+set RUSTFLAGS -x '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C panic=abort -C link-arg=-fuse-ld='$MOLD_BIN
+cargo install -q starship --locked && cargo install -q bat --target-dir=/tmp/bat --locked && cargo install -q zoxide --locked && cargo install -q sd --locked && cargo install -q git-delta --locked && cargo install -q ripgrep --target-dir=/tmp/ripgrep --locked && cargo install -q hyperfine --target-dir=/tmp/hyperfine --locked && cargo install -q silicon --locked && cargo install -q gitui --locked && cargo install -q grex --locked && cargo install -q xh --locked && cargo install -q du-dust --locked && cargo install -q codevis --locked && cargo install -q cargo-nextest --locked && cargo install -q tealdeer --locked && cargo install -q lsd --locked && cargo install -q procs --locked && cargo install -q gping --locked && cargo install -q cargo-watch --locked && cargo install -q cargo-update --locked && cargo install -q just --locked && cargo install -q difftastic --locked && cargo install -q nu --locked && cargo install -q macchina --locked
 
 tldr --update
 hx --grammar fetch
@@ -130,7 +107,7 @@ curl https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/starship.to
 
 
 
-if test -f '/proc/sys/fs/binfmt_misc/WSLInterop'
+if test -f /proc/sys/fs/binfmt_misc/WSLInterop
     echo_divider
     echo 'WSL configs'
     sudo add-apt-repository ppa:wslutilities/wslu
@@ -141,3 +118,5 @@ if test -f '/proc/sys/fs/binfmt_misc/WSLInterop'
     sudo touch /etc/wsl.conf || exit
     echo -e '[interop]\nappendWindowsPath = false' | sudo tee /etc/wsl.conf
 end
+
+gh auth login
