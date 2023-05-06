@@ -79,9 +79,9 @@ echo 'adds rustup components'
 rustup -q component add rust-analyzer
 
 # Install all programs using cargo using the most optimal performance
-
+echo_divider
+echo 'Installing cargo packages...'
 set RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C panic=abort -C link-arg=-fuse-ld='$MOLD_BIN
-
 cargo install -q starship --locked && \
     cargo install -q bat --target-dir=/tmp/bat --locked && \
     cargo install -q zoxide --locked && \
@@ -115,10 +115,10 @@ echo_divider
 echo 'Adding fish completions.'
 rustup completions fish >>~/.config/fish/completions/rustup.fish
 starship completions fish >>~/.config/fish/completions/starship.fish
-mv '/tmp/bat/release/build/bat-*/out/assets/completions/bat.fish' '~/.config/fish/completions/'
-mv '/tmp/hyperfine/release/build/hyperfine-*/out/hyperfine.fish' '~/.config/fish/completions/'
-mv '/tmp/ripgrep/release/build/ripgrep-*/out/rg.fish' '~/.config/fish/completions/'
-mv '/tmp/sd/release/build/sd-*/out/sd.fish' '~/.config/fish/completions/'
+mv /tmp/bat/release/build/bat-*/out/assets/completions/bat.fish ~/.config/fish/completions/
+mv /tmp/hyperfine/release/build/hyperfine-*/out/hyperfine.fish ~/.config/fish/completions/
+mv /tmp/ripgrep/release/build/ripgrep-*/out/rg.fish ~/.config/fish/completions/
+mv /tmp/sd/release/build/sd-*/out/sd.fish ~/.config/fish/completions/
 curl 'https://raw.githubusercontent.com/ducaale/xh/master/completions/xh.fish' >>~/.config/fish/completions/xh.fish
 curl 'https://raw.githubusercontent.com/bootandy/dust/master/completions/dust.fish' >>~/.config/fish/completions/dust.fish
 
