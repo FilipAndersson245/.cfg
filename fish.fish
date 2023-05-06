@@ -31,6 +31,9 @@ echo_divider
 echo 'Installing fisher and its respective plugins.'
 curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source && fisher install jorgebucaran/fisher
 fisher install nickeb96/puffer-fish kidonng/zoxide.fish gazorby/fish-abbreviation-tips PatrickF1/fzf.fish joseluisq/gitnow@2.11.0 edc/bass
+
+set -u -x ABBR_TIPS_PROMPT "ᓚᘏᗢ \e[1m{{ .abbr }}\e[0m => \e[1m{{ .cmd }}\e[0m"
+
 echo_divider
 
 
@@ -81,8 +84,24 @@ rustup -q component add rust-analyzer
 # Install all programs using cargo using the most optimal performance
 echo_divider
 echo 'Installing cargo packages...'
-set RUSTFLAGS -x '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C panic=abort -C link-arg=-fuse-ld='$MOLD_BIN
-cargo install -q starship --locked && cargo install -q bat --target-dir=/tmp/bat --locked && cargo install -q zoxide --locked && cargo install -q sd --locked && cargo install -q git-delta --locked && cargo install -q ripgrep --target-dir=/tmp/ripgrep --locked && cargo install -q hyperfine --target-dir=/tmp/hyperfine --locked && cargo install -q silicon --locked && cargo install -q gitui --locked && cargo install -q grex --locked && cargo install -q xh --locked && cargo install -q du-dust --locked && cargo install -q codevis --locked && cargo install -q cargo-nextest --locked && cargo install -q tealdeer --locked && cargo install -q lsd --locked && cargo install -q procs --locked && cargo install -q gping --locked && cargo install -q cargo-watch --locked && cargo install -q cargo-update --locked && cargo install -q just --locked && cargo install -q difftastic --locked && cargo install -q nu --locked && cargo install -q macchina --locked
+set -x -g RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C panic=abort -C link-arg=-fuse-ld='$MOLD_BIN
+
+# This function is faster but may run out of memory.
+function cargo_build_on_sub
+    for command in $argv
+        echo "executing: cargo install --locked "$command
+        nohup fish -c 'cargo install -q --locked --force '$command &
+        sleep 5
+    end
+    echo (jobs -p)
+    echo "waiting to join jobs"
+    wait (jobs -p)
+end
+
+cargo_build_on_sub starship 'bat --target-dir=/tmp/bat' zoxide sd git-delta 'ripgrep --target-dir=/tmp/ripgrep' 'hyperfine --target-dir=/tmp/hyperfine' silicon gitui grex xh du-dust codevis cargo-nextest tealdeer procs gping cargo-watch cargo-update difftastic macchina
+
+rm nohup.out -f
+set -u --erase RUSTFLAGS
 
 tldr --update
 hx --grammar fetch
@@ -104,8 +123,9 @@ echo "Init starship prompt"
 echo 'starship init fish | source' >>~/.config/fish/config.fish
 curl https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/starship.toml >>~/.config/starship.toml
 
-
-
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/.gitconfig >~/.gitconfig
+git config --global user.name FilipAndersson245
+git config --global user.email "17986183+FilipAndersson245@users.noreply.github.com"
 
 if test -f /proc/sys/fs/binfmt_misc/WSLInterop
     echo_divider
@@ -118,5 +138,6 @@ if test -f /proc/sys/fs/binfmt_misc/WSLInterop
     sudo touch /etc/wsl.conf || exit
     echo -e '[interop]\nappendWindowsPath = false' | sudo tee /etc/wsl.conf
 end
+
 
 gh auth login
