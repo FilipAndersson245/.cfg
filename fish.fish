@@ -139,5 +139,11 @@ if test -f /proc/sys/fs/binfmt_misc/WSLInterop
     echo -e '[interop]\nappendWindowsPath = false' | sudo tee /etc/wsl.conf
 end
 
+# helper functions and abbr.
+function mkcd
+        mkdir -p $argv[1]; cd $argv[1]
+end
+funcsave mkcd
 
+# Github login.
 gh auth login
