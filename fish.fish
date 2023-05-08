@@ -145,5 +145,32 @@ function mkcd
 end
 funcsave mkcd
 
+abbr -a -- pipu 'pip install --upgrade'
+abbr -a -- pipi 'pip install'
+abbr -a -- cls clear
+abbr -a -- vi vim
+abbr -a -- mkdir 'mkdir -p'
+abbr -a -- g git
+abbr -a -- ga 'git add'
+abbr -a -- gb 'git branch'
+abbr -a -- gbl 'git blame'
+abbr -a -- gc 'git commit -m'
+abbr -a -- gca 'git commit --amend -m'
+abbr -a -- gco 'git checkout'
+abbr -a -- gcp 'git cherry-pick'
+abbr -a -- gd 'git diff'
+abbr -a -- gf 'git fetch'
+abbr -a -- gl 'git log'
+abbr -a -- gm 'git merge'
+abbr -a -- gp 'git push'
+abbr -a -- gpf 'git push --force-with-lease'
+abbr -a -- gpl 'git pull'
+abbr -a -- gr 'git remote'
+abbr -a -- grb 'git rebase'
+abbr -a -- gs 'git status'
+abbr -a -- gst 'git stash'
+abbr -a -- hist history
+abbr -a -- histg 'history | rg'
+
 # Github login.
 gh auth login
