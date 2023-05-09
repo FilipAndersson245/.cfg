@@ -32,7 +32,7 @@ echo 'Installing fisher and its respective plugins.'
 curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source && fisher install jorgebucaran/fisher
 fisher install nickeb96/puffer-fish kidonng/zoxide.fish gazorby/fish-abbreviation-tips PatrickF1/fzf.fish joseluisq/gitnow@2.11.0 edc/bass
 
-set -u -x ABBR_TIPS_PROMPT "ᓚᘏᗢ \e[1m{{ .abbr }}\e[0m => \e[1m{{ .cmd }}\e[0m"
+set -u -x ABBR_TIPS_PROMPT 'ᓚᘏᗢ \e[1m{{ .abbr }}\e[0m => \e[1m{{ .cmd }}\e[0m'
 
 echo_divider
 
@@ -89,12 +89,12 @@ set -x -g RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C s
 # This function is faster but may run out of memory.
 function cargo_build_on_sub
     for command in $argv
-        echo "executing: cargo install --locked "$command
+        echo 'executing: cargo install --locked '$command
         nohup fish -c 'cargo install -q --locked --force '$command &
         sleep 5
     end
     echo (jobs -p)
-    echo "waiting to join jobs"
+    echo 'waiting to join jobs'
     wait (jobs -p)
 end
 
@@ -119,14 +119,18 @@ curl 'https://raw.githubusercontent.com/ducaale/xh/master/completions/xh.fish' >
 curl 'https://raw.githubusercontent.com/bootandy/dust/master/completions/dust.fish' >>~/.config/fish/completions/dust.fish
 
 echo_divider
-echo "Init starship prompt"
+echo 'Init starship prompt'
 echo 'starship init fish | source' >>~/.config/fish/config.fish
 curl https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/starship.toml >>~/.config/starship.toml
 
+echo_divider
+echo 'Setting git username and email'
 curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/.gitconfig >~/.gitconfig
 git config --global user.name FilipAndersson245
 git config --global user.email "17986183+FilipAndersson245@users.noreply.github.com"
 
+echo_divider
+echo 'checking for wsl and doing some config if a wsl instance.'
 if test -f /proc/sys/fs/binfmt_misc/WSLInterop
     echo_divider
     echo 'WSL configs'
@@ -138,13 +142,16 @@ if test -f /proc/sys/fs/binfmt_misc/WSLInterop
     sudo touch /etc/wsl.conf || exit
     echo -e '[interop]\nappendWindowsPath = false' | sudo tee /etc/wsl.conf
 end
-
+echo_divider
+echo 'creating and saving functions.'
 # helper functions and abbr.
 function mkcd
         mkdir -p $argv[1]; cd $argv[1]
 end
 funcsave mkcd
 
+echo_divider
+echo 'Setting abbr.'
 abbr -a -- pipu 'pip install --upgrade'
 abbr -a -- pipi 'pip install'
 abbr -a -- cls clear
