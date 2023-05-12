@@ -32,7 +32,7 @@ echo 'Installing fisher and its respective plugins.'
 curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source && fisher install jorgebucaran/fisher
 fisher install nickeb96/puffer-fish kidonng/zoxide.fish gazorby/fish-abbreviation-tips PatrickF1/fzf.fish joseluisq/gitnow@2.11.0 edc/bass
 
-set -u -x ABBR_TIPS_PROMPT 'ᓚᘏᗢ \e[1m{{ .abbr }}\e[0m => \e[1m{{ .cmd }}\e[0m'
+set -x ABBR_TIPS_PROMPT 'ᓚᘏᗢ \e[1m{{ .abbr }}\e[0m => \e[1m{{ .cmd }}\e[0m'
 
 echo_divider
 
