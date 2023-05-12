@@ -178,6 +178,7 @@ abbr -a -- gs 'git status'
 abbr -a -- gst 'git stash'
 abbr -a -- hist history
 abbr -a -- histg 'history | rg'
+abbr -a -- neofetch 'macchina'
 abbr >> ~/.config/fish/config.fish
 
 # Github login.
