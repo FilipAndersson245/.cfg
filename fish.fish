@@ -21,7 +21,7 @@ echo_divider
 echo_divider
 echo 'Setting fish as login shell.'
 echo /usr/local/bin/fish | sudo tee -a /etc/shells
-sudo chsh -s (command -s fish)
+chsh -s $(which fish)
 
 set -U fish_greeting ''
 mkdir -p ~/.config
