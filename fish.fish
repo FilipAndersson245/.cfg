@@ -58,7 +58,7 @@ echo 'pyenv init - | source' >>~/.config/fish/config.fish
 echo 'status --is-interactive; and pyenv virtualenv-init - | source' >>~/.config/fish/config.fish
 
 pyenv install 3.11 3.10
-pyenv global 3.11
+pyenv global 3.10
 
 
 echo_divider
@@ -98,7 +98,7 @@ function cargo_build_on_sub
     wait (jobs -p)
 end
 
-cargo_build_on_sub starship 'bat --target-dir=/tmp/bat' zoxide sd git-delta 'ripgrep --target-dir=/tmp/ripgrep' 'hyperfine --target-dir=/tmp/hyperfine' silicon gitui grex xh du-dust codevis cargo-nextest tealdeer procs gping cargo-watch cargo-update difftastic macchina
+cargo_build_on_sub starship 'bat --target-dir=/tmp/bat' zoxide sd git-delta 'ripgrep --target-dir=/tmp/ripgrep' 'hyperfine --target-dir=/tmp/hyperfine' gitui grex xh du-dust codevis cargo-nextest tealdeer procs gping cargo-watch cargo-update difftastic macchina
 
 rm nohup.out -f
 set -u --erase RUSTFLAGS
@@ -129,19 +129,6 @@ curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAnde
 git config --global user.name FilipAndersson245
 git config --global user.email "17986183+FilipAndersson245@users.noreply.github.com"
 
-echo_divider
-echo 'checking for wsl and doing some config if a wsl instance.'
-if test -f /proc/sys/fs/binfmt_misc/WSLInterop
-    echo_divider
-    echo 'WSL configs'
-    sudo add-apt-repository ppa:wslutilities/wslu
-    sudo apt install ubuntu-wsl wslu -y
-
-    echo 'Configuring wsl specific parameters.'
-    rg --files /mnt/c/Users/ -g code | fish_add_path
-    sudo touch /etc/wsl.conf || exit
-    echo -e '[interop]\nappendWindowsPath = false' | sudo tee /etc/wsl.conf
-end
 echo_divider
 echo 'creating and saving functions.'
 # helper functions and abbr.
