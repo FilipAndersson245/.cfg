@@ -63,6 +63,7 @@ pyenv global 3.10
 
 echo_divider
 echo 'Installing cargo.'
+echo_divider
 curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
 fish_add_path $HOME/.cargo/bin
 
@@ -84,24 +85,33 @@ rustup -q component add rust-analyzer
 # Install all programs using cargo using the most optimal performance
 echo_divider
 echo 'Installing cargo packages...'
-set -x -g RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C panic=abort -C link-arg=-fuse-ld='$MOLD_BIN
+echo_divider
 
-# This function is faster but may run out of memory.
-function cargo_build_on_sub
-    for command in $argv
-        echo 'executing: cargo install --locked '$command
-        nohup fish -c 'cargo install -q --locked --force '$command &
-        sleep 5
-    end
-    echo (jobs -p)
-    echo 'waiting to join jobs'
-    wait (jobs -p)
-end
+set -x -g RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C link-arg=-fuse-ld='$MOLD_BIN
 
-cargo_build_on_sub starship 'bat --target-dir=/tmp/bat' zoxide sd git-delta 'ripgrep --target-dir=/tmp/ripgrep' 'hyperfine --target-dir=/tmp/hyperfine' gitui grex xh du-dust codevis cargo-nextest tealdeer procs gping cargo-watch cargo-update difftastic macchina
+cargo install -q --locked starship                                       ; or echo "Failed to install starship"
+cargo install -q --locked zoxide                                         ; or echo "Failed to install zoxide"
+cargo install -q --locked sd                                             ; or echo "Failed to install sd"
+cargo install -q --locked git-delta                                      ; or echo "Failed to install git-delta"
+cargo install -q --locked gitui                                          ; or echo "Failed to install gitui"
+cargo install -q --locked grex                                           ; or echo "Failed to install grex"
+cargo install -q --locked xh                                             ; or echo "Failed to install xh"
+cargo install -q --locked du-dust                                        ; or echo "Failed to install du-dust"
+cargo install -q --locked cargo-nextest                                  ; or echo "Failed to install cargo-nextest"
+cargo install -q --locked tealdeer                                       ; or echo "Failed to install tealdeer"
+cargo install -q --locked procs                                          ; or echo "Failed to install procs"
+cargo install -q --locked gping                                          ; or echo "Failed to install gping"
+cargo install -q --locked cargo-watch                                    ; or echo "Failed to install cargo-watch"
+cargo install -q --locked cargo-update                                   ; or echo "Failed to install cargo-update"
+cargo install -q --locked difftastic                                     ; or echo "Failed to install difftastic"
+cargo install -q --locked macchina                                       ; or echo "Failed to install macchina"
+cargo install -q --locked codevis                                        ; or echo "Failed to install codevis"
 
-rm nohup.out -f
-set -u --erase RUSTFLAGS
+cargo install -q --locked bat --target-dir=/tmp/bat                      ; or echo "Failed to install bat"
+cargo install -q --locked ripgrep --target-dir=/tmp/ripgrep              ; or echo "Failed to install ripgrep"
+cargo install -q --locked hyperfine --target-dir=/tmp/hyperfine          ; or echo "Failed to install hyperfine"
+
+set --erase RUSTFLAGS
 
 tldr --update
 hx --grammar fetch
@@ -109,6 +119,7 @@ hx --grammar build
 
 echo_divider
 echo 'Adding fish completions.'
+echo_divider
 rustup completions fish >>~/.config/fish/completions/rustup.fish
 starship completions fish >>~/.config/fish/completions/starship.fish
 mv /tmp/bat/release/build/bat-*/out/assets/completions/bat.fish ~/.config/fish/completions/
@@ -125,6 +136,7 @@ curl https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/starship.to
 
 echo_divider
 echo 'Setting git username and email'
+echo_divider
 curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/.gitconfig >~/.gitconfig
 git config --global user.name FilipAndersson245
 git config --global user.email "17986183+FilipAndersson245@users.noreply.github.com"
@@ -139,6 +151,7 @@ funcsave mkcd
 
 echo_divider
 echo 'Setting abbr.'
+echo_divider
 abbr -a -- pipu 'pip install --upgrade'
 abbr -a -- pipi 'pip install'
 abbr -a -- cls clear
