@@ -65,6 +65,7 @@ echo_divider
 echo 'Installing cargo.'
 echo_divider
 curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
+curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y
 fish_add_path $HOME/.cargo/bin
 
 echo_divider
@@ -79,6 +80,8 @@ echo 'linker = "clang-15"' >>~/.cargo/config.toml
 echo 'rustflags = ["-C", "target-cpu=native", "-C", "link-arg=-fuse-ld='$MOLD_BIN'"]' >>~/.cargo/config.toml
 
 echo_divider
+source ~/.config/fish/config.fish
+
 echo 'adds rustup components'
 rustup -q component add rust-analyzer
 
@@ -89,27 +92,27 @@ echo_divider
 
 set -x -g RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C link-arg=-fuse-ld='$MOLD_BIN
 
-cargo install -q --locked starship                                       ; or echo "Failed to install starship"
-cargo install -q --locked zoxide                                         ; or echo "Failed to install zoxide"
-cargo install -q --locked sd                                             ; or echo "Failed to install sd"
-cargo install -q --locked git-delta                                      ; or echo "Failed to install git-delta"
-cargo install -q --locked gitui                                          ; or echo "Failed to install gitui"
-cargo install -q --locked grex                                           ; or echo "Failed to install grex"
-cargo install -q --locked xh                                             ; or echo "Failed to install xh"
-cargo install -q --locked du-dust                                        ; or echo "Failed to install du-dust"
-cargo install -q --locked cargo-nextest                                  ; or echo "Failed to install cargo-nextest"
-cargo install -q --locked tealdeer                                       ; or echo "Failed to install tealdeer"
-cargo install -q --locked procs                                          ; or echo "Failed to install procs"
-cargo install -q --locked gping                                          ; or echo "Failed to install gping"
-cargo install -q --locked cargo-watch                                    ; or echo "Failed to install cargo-watch"
-cargo install -q --locked cargo-update                                   ; or echo "Failed to install cargo-update"
-cargo install -q --locked difftastic                                     ; or echo "Failed to install difftastic"
-cargo install -q --locked macchina                                       ; or echo "Failed to install macchina"
-cargo install -q --locked codevis                                        ; or echo "Failed to install codevis"
+cargo install -q --locked starship                                       ; and echo "starship installed"
+cargo install -q --locked zoxide                                         ; and echo "zoxide installed"
+cargo install -q --locked sd                                             ; and echo "sd installed"
+cargo install -q --locked git-delta                                      ; and echo "git-delta installed"
+cargo install -q --locked gitui                                          ; and echo "gitui installed"
+cargo install -q --locked grex                                           ; and echo "grex installed"
+cargo install -q --locked xh                                             ; and echo "xh installed"
+cargo install -q --locked du-dust                                        ; and echo "du-dust installed"
+cargo install -q --locked cargo-nextest                                  ; and echo "cargo-nextest installed"
+cargo install -q --locked tealdeer                                       ; and echo "tealdeer installed"
+cargo install -q --locked procs                                          ; and echo "procs installed"
+cargo install -q --locked gping                                          ; and echo "gping installed"
+cargo install -q --locked cargo-watch                                    ; and echo "cargo-watch installed"
+cargo install -q --locked cargo-update                                   ; and echo "cargo-update installed"
+cargo install -q --locked difftastic                                     ; and echo "difftastic installed"
+cargo install -q --locked macchina                                       ; and echo "macchina installed"
+cargo install -q --locked codevis                                        ; and echo "codevis installed"
 
-cargo install -q --locked bat --target-dir=/tmp/bat                      ; or echo "Failed to install bat"
-cargo install -q --locked ripgrep --target-dir=/tmp/ripgrep              ; or echo "Failed to install ripgrep"
-cargo install -q --locked hyperfine --target-dir=/tmp/hyperfine          ; or echo "Failed to install hyperfine"
+cargo install -q --locked bat --target-dir=/tmp/bat                      ; and echo "bat installed"
+cargo install -q --locked ripgrep --target-dir=/tmp/ripgrep              ; and echo "ripgrep installed"
+cargo install -q --locked hyperfine --target-dir=/tmp/hyperfine          ; and echo "hyperfine installed"
 
 set --erase RUSTFLAGS
 
