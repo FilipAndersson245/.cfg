@@ -109,6 +109,7 @@ cargo install -q --locked cargo-update                                   ; and e
 cargo install -q --locked difftastic                                     ; and echo "difftastic installed"
 cargo install -q --locked macchina                                       ; and echo "macchina installed"
 cargo install -q --locked codevis                                        ; and echo "codevis installed"
+cargo install -q --locked cargo-readme                                   ; and echo "cargo-readme installed"
 
 cargo install -q --locked bat --target-dir=/tmp/bat                      ; and echo "bat installed"
 cargo install -q --locked ripgrep --target-dir=/tmp/ripgrep              ; and echo "ripgrep installed"
