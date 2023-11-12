@@ -57,8 +57,8 @@ fish_add_path $PYENV_ROOT/bin
 echo 'pyenv init - | source' >>~/.config/fish/config.fish
 echo 'status --is-interactive; and pyenv virtualenv-init - | source' >>~/.config/fish/config.fish
 
-pyenv install 3.11 3.10
-pyenv global 3.10
+pyenv install 3.12 3.11 3.10 3.9
+pyenv global 3.11
 
 
 echo_divider
@@ -110,6 +110,7 @@ cargo install -q --locked difftastic                                     ; and e
 cargo install -q --locked macchina                                       ; and echo "macchina installed"
 cargo install -q --locked codevis                                        ; and echo "codevis installed"
 cargo install -q --locked cargo-readme                                   ; and echo "cargo-readme installed"
+cargo install -q --locked just                                           ; and echo "just installed"
 
 cargo install -q --locked bat --target-dir=/tmp/bat                      ; and echo "bat installed"
 cargo install -q --locked ripgrep --target-dir=/tmp/ripgrep              ; and echo "ripgrep installed"
@@ -136,7 +137,7 @@ curl 'https://raw.githubusercontent.com/bootandy/dust/master/completions/dust.fi
 echo_divider
 echo 'Init starship prompt'
 echo 'starship init fish | source' >>~/.config/fish/config.fish
-curl https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/starship.toml >>~/.config/starship.toml
+# curl https://raw.githubusercontent.com/FilipAndersson245/.cfg/master/starship.toml >>~/.config/starship.toml
 
 echo_divider
 echo 'Setting git username and email'
