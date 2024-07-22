@@ -169,8 +169,6 @@ abbr -a -- gr 'git remote'
 abbr -a -- grb 'git rebase'
 abbr -a -- gs 'git status'
 abbr -a -- gst 'git stash'
-abbr -a -- hist history
-abbr -a -- histg 'history | rg'
 abbr >> ~/.config/fish/config.fish
 
 # Github login.
