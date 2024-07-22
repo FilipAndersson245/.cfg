@@ -10,8 +10,8 @@ echo_divider
 echo 'Installing packages'
 sudo add-apt-repository -y ppa:maveonair/helix-editor
 
-sudo apt -qq -y install build-essential clang-15 lldb-15 lld-15 libssl-dev zlib1g-dev zstd libasound2-dev \
-    libbz2-dev libreadline-dev libsqlite3-dev curl fzf ffmpeg expat pkg-config nodejs gh cmake python3-pylsp \
+sudo apt -qq -y install build-essential libssl-dev zlib1g-dev zstd libasound2-dev \
+    libbz2-dev libreadline-dev libsqlite3-dev curl fzf ffmpeg expat pkg-config nodejs gh fastfetch cmake python3-pylsp \
     libxcb-composite0-dev libharfbuzz-dev libexpat1-dev libfreetype6-dev libblas-dev liblapack-dev \
     libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev fish fzf helix
 echo 'apt install done'
@@ -58,7 +58,7 @@ echo 'pyenv init - | source' >>~/.config/fish/config.fish
 echo 'status --is-interactive; and pyenv virtualenv-init - | source' >>~/.config/fish/config.fish
 
 pyenv install 3.12 3.11 3.10 3.9
-pyenv global 3.11
+pyenv global 3.12
 
 
 echo_divider
@@ -68,16 +68,7 @@ curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
 curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y
 fish_add_path $HOME/.cargo/bin
 
-echo_divider
-echo 'Installing MOLD.'
-mkdir ~/.linker
-mkdir ~/.linker/mold
-curl -L -k (curl -s https://api.github.com/repos/rui314/mold/releases/latest | grep 'x86_64-linux' | grep http | cut -d\" -f4) | tar zx
-mv (ls | grep mold) mold && mv mold ~/.linker/
-set -gx MOLD_BIN (path resolve ~/.linker/mold/bin/mold)
-echo '[target.x86_64-unknown-linux-gnu]' >>~/.cargo/config.toml
-echo 'linker = "clang-15"' >>~/.cargo/config.toml
-echo 'rustflags = ["-C", "target-cpu=native", "-C", "link-arg=-fuse-ld='$MOLD_BIN'"]' >>~/.cargo/config.toml
+echo 'rustflags = ["-C", "target-cpu=native"]' >>~/.cargo/config.toml
 
 echo_divider
 source ~/.config/fish/config.fish
@@ -90,7 +81,7 @@ echo_divider
 echo 'Installing cargo packages...'
 echo_divider
 
-set -x -g RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols -C link-arg=-fuse-ld='$MOLD_BIN
+set -x -g RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols
 
 cargo install -q --locked starship                                       ; and echo "starship installed"
 cargo install -q --locked zoxide                                         ; and echo "zoxide installed"
@@ -107,9 +98,6 @@ cargo install -q --locked gping                                          ; and e
 cargo install -q --locked cargo-watch                                    ; and echo "cargo-watch installed"
 cargo install -q --locked cargo-update                                   ; and echo "cargo-update installed"
 cargo install -q --locked difftastic                                     ; and echo "difftastic installed"
-cargo install -q --locked macchina                                       ; and echo "macchina installed"
-cargo install -q --locked codevis                                        ; and echo "codevis installed"
-cargo install -q --locked cargo-readme                                   ; and echo "cargo-readme installed"
 cargo install -q --locked just                                           ; and echo "just installed"
 
 cargo install -q --locked bat --target-dir=/tmp/bat                      ; and echo "bat installed"
