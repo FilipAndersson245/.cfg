@@ -81,7 +81,7 @@ echo_divider
 echo 'Installing cargo packages...'
 echo_divider
 
-set -x -g RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols
+set -x -g RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols'
 
 cargo install -q --locked starship                                       ; and echo "starship installed"
 cargo install -q --locked zoxide                                         ; and echo "zoxide installed"
