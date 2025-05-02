@@ -53,5 +53,4 @@
     prune = fetch --prune
     undo = reset --soft HEAD^
     stash-all = stash save --include-untracked
-    glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Cre>
-        remove-gone-branches = !git branch -vv | sed 's/^\\*//' | grep ': gone]' | awk '{print $1}' | (xargs git b>
+    glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Cre>remove-gone-branches = !git branch -vv | sed 's/^\\*//' | grep ': gone]' | awk '{print $1}' | (xargs git b>
