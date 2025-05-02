@@ -1,6 +1,8 @@
 [core]
     pager = delta
-    
+        fsmonitor = true
+        untrackedcache = true
+
 [pager]
         difftool = true
 
@@ -9,20 +11,22 @@
 
 [delta]
     navigate = true    # use n and N to move between diff sections
-    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS t>
     side-by-side = true
     line-numbers = true
 
 [merge]
-    conflictstyle = diff3
+        conflictstyle = zdiff3
     ff = only
-    
+
 [push]
     followTags = true
+        autoSetupRemote = true
 
 [diff]
     colorMoved = default
     tool = difftastic
+        algorithm = histogram
 
 [difftool]
     prompt = false
@@ -31,11 +35,23 @@
     cmd = difft "$LOCAL" "$REMOTE"
 
 [credential "https://github.com"]
-	helper = !/usr/bin/gh auth git-credential
-        
+        helper = !/usr/bin/gh auth git-credential
+
 [alias]
     dft = difftool
     prune = fetch --prune
     undo = reset --soft HEAD^
     stash-all = stash save --include-untracked
-    glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Cre>
+        remove-gone-branches = !git branch -vv | sed 's/^\\*//' | grep ': gone]' | awk '{print $1}' | (xargs git b>
+
+[feature]
+        manyFiles = true
+[init]
+        defaultBranch = main
+[branch]
+        sort = -committerdate
+[rebase]
+        autosquash = true
+[help]
+        autocorrect = 10
