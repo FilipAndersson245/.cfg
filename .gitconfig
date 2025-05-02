@@ -37,6 +37,17 @@
 [credential "https://github.com"]
         helper = !/usr/bin/gh auth git-credential
 
+[feature]
+    manyFiles = true
+[init]
+    defaultBranch = main
+[branch]
+    sort = -committerdate
+[rebase]
+    autosquash = true
+[help]
+    autocorrect = 10
+
 [alias]
     dft = difftool
     prune = fetch --prune
@@ -44,14 +55,3 @@
     stash-all = stash save --include-untracked
     glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Cre>
         remove-gone-branches = !git branch -vv | sed 's/^\\*//' | grep ': gone]' | awk '{print $1}' | (xargs git b>
-
-[feature]
-        manyFiles = true
-[init]
-        defaultBranch = main
-[branch]
-        sort = -committerdate
-[rebase]
-        autosquash = true
-[help]
-        autocorrect = 10
