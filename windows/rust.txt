@@ -1,0 +1,16 @@
+zoxide
+starship
+ripgrep
+bat
+sd-cli
+hyperfine
+hexyl
+yazi
+nushell
+uv
+gitui
+delta
+eza
+fd
+bottom
+wezterm
