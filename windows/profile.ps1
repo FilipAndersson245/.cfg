@@ -8,6 +8,13 @@ $env:FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --colo
 
 Set-PSReadLineOption -Colors @{ InlinePrediction = "`e[38;5;238m" }
 
+$env:GIT_CONFIG  = "C:\dev-setup\.gitconfig"
+$env:GIT_CONFIG_SYSTEM  = "C:\dev-setup\.gitconfig"
+$env:GIT_CONFIG_GLOBAL  = "C:\dev-setup\.gitconfig"
+$env:CARGO_HOME = 'C:\dev-setup\.cargo'
+$env:UV_PYTHON_INSTALL_DIR = "C:\dev-setup\uv\python"
+$env:UV_CACHE_DIR = "C:\dev-setup\uv\.cache"
+$env:UV_COMPILE_BYTECODE = "true"
 
 function grep {
     $count = @($input).Count
