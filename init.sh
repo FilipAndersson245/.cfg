@@ -3,7 +3,7 @@ echo "init.sh"
 echo "---------------------------------------------------------------------------------------------"
 echo "update / upgrade"
 
-sudo apt-add-repository ppa:fish-shell/release-3 
+sudo apt-add-repository ppa:fish-shell/release-4
 sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
 sudo apt update
 sudo apt -qq update -y
