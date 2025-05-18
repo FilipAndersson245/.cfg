@@ -36,6 +36,8 @@
 
 [credential "https://github.com"]
     helper = !/usr/bin/gh auth git-credential
+[credential "https://dev.azure.com"]
+	useHttpPath = true
 
 [feature]
     manyFiles = true
@@ -47,6 +49,16 @@
     autosquash = true
 [help]
     autocorrect = 10
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[user]
+    email = "17986183+FilipAndersson245@users.noreply.github.com"
+    name = "FilipAndersson245"
 
 [alias]
     dft = difftool
