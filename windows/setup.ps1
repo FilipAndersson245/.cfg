@@ -28,21 +28,17 @@ function Add-PathToMachineEnvironment {
     }
 }
 
-Set-PSReadLineOption -Colors @{ InlinePrediction = "`e[38;5;238m" }
+$devfolder = "C:\dev-setup\"
+$env:GIT_CONFIG  = $devfolder".gitconfig"
+$env:GIT_CONFIG_SYSTEM  = $devfolder".gitconfig"
+$env:GIT_CONFIG_GLOBAL  = $devfolder".gitconfig"
+$env:CARGO_HOME = $devfolder".cargo"
+$env:UV_PYTHON_INSTALL_DIR = $devfolder"\uv\python"
+$env:UV_CACHE_DIR = $devfolder"uv\.cache"
+$env:UV_INSTALL_DIR = $devfolder"uv"
 
-[System.Environment]::SetEnvironmentVariable('GIT_CONFIG ',"C:\dev-setup\.gitconfig", 'Machine')
-$env:GIT_CONFIG  = "C:\dev-setup\.gitconfig"
+$env:UV_COMPILE_BYTECODE = "true"
 
-[System.Environment]::SetEnvironmentVariable('GIT_CONFIG_SYSTEM ',"C:\dev-setup\.gitconfig", 'Machine')
-$env:GIT_CONFIG_SYSTEM  = "C:\dev-setup\.gitconfig"
-
-[System.Environment]::SetEnvironmentVariable('GIT_CONFIG_GLOBAL ',"C:\dev-setup\.gitconfig", 'Machine')
-$env:GIT_CONFIG_GLOBAL  = "C:\dev-setup\.gitconfig"
-
-[System.Environment]::SetEnvironmentVariable('CARGO_HOME',"C:\dev-setup\.gitconfig", 'Machine')
-$env:CARGO_HOME = 'C:\dev-setup\.cargo'
-
-$env:UV_INSTALL_DIR = "C:\dev-setup\uv"
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 
 [System.Environment]::SetEnvironmentVariable('UV_PYTHON_INSTALL_DIR',"C:\dev-setup\uv\python", 'Machine')
