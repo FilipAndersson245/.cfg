@@ -38,6 +38,9 @@ echo_divider
 
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
+source $HOME/.local/bin/env.fish
+fish_add_path $HOME/.local/bin/env.fish
+
 uv python install 3.13
 uv python install 3.12
 uv python install 3.10
@@ -62,10 +65,8 @@ echo_divider
 echo 'Installing cargo packages...'
 echo_divider
 
-set -x -g RUSTFLAGS '-C opt-level=3 -C target-cpu=native -C codegen-units=1 -C strip=symbols'
-
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
-cargo-binstall --root C:\dev-setup\cli -y zoxide starship ripgrep bat sd hyperfine hexyl yazi-fm yazi-cli git-delta eza fd-find bottom du-dust just qsv xh samply miniserve gifski difftastic bacon
+cargo-binstall -y zoxide starship ripgrep bat sd hyperfine hexyl yazi-fm yazi-cli git-delta eza fd-find bottom du-dust just qsv xh samply miniserve gifski difftastic bacon
 cargo install -q --locked gitui
 
 tldr --update
