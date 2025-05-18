@@ -30,11 +30,16 @@ function Add-PathToMachineEnvironment {
 
 Set-PSReadLineOption -Colors @{ InlinePrediction = "`e[38;5;238m" }
 
+[System.Environment]::SetEnvironmentVariable('GIT_CONFIG ',"C:\dev-setup\.gitconfig", 'Machine')
+$env:GIT_CONFIG  = "C:\dev-setup\.gitconfig"
 
-[System.Environment]::SetEnvironmentVariable('GIT_CONFIG_GLOBAL ',"C:\dev-setup\", 'Machine')
-$env:GIT_CONFIG_GLOBAL  = "C:\dev-setup\"
+[System.Environment]::SetEnvironmentVariable('GIT_CONFIG_SYSTEM ',"C:\dev-setup\.gitconfig", 'Machine')
+$env:GIT_CONFIG_SYSTEM  = "C:\dev-setup\.gitconfig"
 
-[System.Environment]::SetEnvironmentVariable('CARGO_HOME','C:\dev-setup\.cargo', 'Machine')
+[System.Environment]::SetEnvironmentVariable('GIT_CONFIG_GLOBAL ',"C:\dev-setup\.gitconfig", 'Machine')
+$env:GIT_CONFIG_GLOBAL  = "C:\dev-setup\.gitconfig"
+
+[System.Environment]::SetEnvironmentVariable('CARGO_HOME',"C:\dev-setup\.gitconfig", 'Machine')
 $env:CARGO_HOME = 'C:\dev-setup\.cargo'
 
 $env:UV_INSTALL_DIR = "C:\dev-setup\uv"
