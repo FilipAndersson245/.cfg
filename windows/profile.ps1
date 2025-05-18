@@ -19,6 +19,8 @@ $env:UV_INSTALL_DIR = $devfolder"uv"
 
 $env:UV_COMPILE_BYTECODE = "true"
 
+$env:path = "$env:path;"$devfolder"cli\bin\""
+
 
 function grep {
     $count = @($input).Count
