@@ -13,6 +13,7 @@ $env:UV_INSTALL_DIR = "$devfolder\uv"
 $env:UV_COMPILE_BYTECODE = "true"
 
 $env:BUN_INSTALL = "$devfolder\.bun"
+$env:BUN_INSTALL_CACHE_DIR = "$devfolder\.bun\install\cache"
 
 $env:path = "$env:path;$devfolder\cli\bin\;$devfolder\.bun\bin\"
 
