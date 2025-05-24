@@ -1,3 +1,6 @@
+$env:FZF_DEFAULT_COMMAND = "fd --type file --color=always"
+$env:FZF_DEFAULT_OPTS = "--ansi --preview-window 'right:60%' --preview 'bat --color=always -n --nonprintable-notation=caret --style=header,grid --line-range :300 {}'"
+
 $devfolder = "D:\.setup"
 
 $env:GIT_CONFIG = "$devfolder\.gitconfig"
@@ -15,9 +18,11 @@ $env:UV_COMPILE_BYTECODE = "true"
 $env:BUN_INSTALL = "$devfolder\.bun"
 $env:BUN_INSTALL_CACHE_DIR = "$devfolder\.bun\install\cache"
 
-$env:path = "$env:path;$devfolder\cli\bin\;$devfolder\.bun\bin\"
+$env:path = "$env:path;$devfolder\cli\bin\;$devfolder\.bun\bin\;$devfolder\.cargo\bin"
 
 # --------------------------------------------------------------------------------------------------
+
+Set-ExecutionPolicy Unrestricted -Scope Process; Invoke-Expression (Invoke-WebRequest "https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.ps1").Content
 
 powershell -c "irm bun.sh/install.ps1|iex"
 

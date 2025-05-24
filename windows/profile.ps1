@@ -1,12 +1,5 @@
-Import-Module PSReadLine
-
-Invoke-Expression (&starship init powershell)
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
-
 $env:FZF_DEFAULT_COMMAND = "fd --type file --color=always"
 $env:FZF_DEFAULT_OPTS = "--ansi --preview-window 'right:60%' --preview 'bat --color=always -n --nonprintable-notation=caret --style=header,grid --line-range :300 {}'"
-
-Set-PSReadLineOption -Colors @{ InlinePrediction = "`e[38;5;238m" }
 
 $devfolder = "D:\.setup"
 
@@ -25,8 +18,16 @@ $env:UV_COMPILE_BYTECODE = "true"
 $env:BUN_INSTALL = "$devfolder\.bun"
 $env:BUN_INSTALL_CACHE_DIR = "$devfolder\.bun\install\cache"
 
-$env:path = "$env:path;$devfolder\cli\bin\;$devfolder\.bun\bin\"
+$env:path = "$env:path;$devfolder\cli\bin\;$devfolder\.bun\bin\;$devfolder\.cargo\bin"
 
+
+# --------------------------------------------------------------------------------------------------
+Import-Module PSReadLine
+
+Invoke-Expression (&starship init powershell)
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
+
+Set-PSReadLineOption -Colors @{ InlinePrediction = "`e[38;5;238m" }
 
 function grep {
     $count = @($input).Count

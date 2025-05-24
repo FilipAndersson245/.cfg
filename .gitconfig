@@ -35,7 +35,8 @@
     cmd = difft "$LOCAL" "$REMOTE"
 
 [credential "https://github.com"]
-    helper = !/usr/bin/gh auth git-credential
+    helper = gh auth git-credential
+    username = filipAndersson245
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 
