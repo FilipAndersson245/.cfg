@@ -12,7 +12,18 @@ $env:UV_CACHE_DIR = "$devfolder\uv\.cache"
 $env:UV_INSTALL_DIR = "$devfolder\uv"
 $env:UV_COMPILE_BYTECODE = "true"
 
-$env:path = "$env:path;$devfolder\cli\bin\;$devfolder\.cargo\bin\"
+$env:BUN_INSTALL = "$devfolder\.bun"
+
+$env:path = "$env:path;$devfolder\cli\bin\;$devfolder\.bun\bin\"
+
+# --------------------------------------------------------------------------------------------------
+
+powershell -c "irm bun.sh/install.ps1|iex"
+
+$url = "https://win.rustup.rs/x86_64"
+$path = "$devfolder\rustup.exe"
+Invoke-WebRequest $url -OutFile $path
+Start-Process $path -ArgumentList "toolchain install stable nightly"
 
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 
